@@ -21,7 +21,7 @@ tagline: Take a dive into Max's Mind
 description: Take a dive into Max's Mind
 
 # The full URL to your site. Note: site.github.url will be used by default.
-url: maxrios.dev
+url:
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
