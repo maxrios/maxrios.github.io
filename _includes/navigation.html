@@ -12,9 +12,11 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         {% for item in site.data.navigation %}
-          <li class="nav-item">
-            <a href="{{ item.link | relative_url }}" {% if page.url == item.link %} class="nav-link active" {% else %} class="nav-link" {% endif %}>{{ item.name }}</a>
-          </li>
+          {% if item.name != "Moody Privacy" %}
+            <li class="nav-item">
+              <a href="{{ item.link | relative_url }}" {% if page.url == item.link %} class="nav-link active" {% else %} class="nav-link" {% endif %}>{{ item.name }}</a>
+            </li>
+          {% endif %}
         {% endfor %}
       </ul>
     </div>
