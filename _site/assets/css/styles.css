@@ -10,6 +10,7 @@
 * This version is a dual color theme, with the default light mode and the dark
 * elements optioned in by a `prefers-color-scheme: dark` media query
 */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 :root {
   color-scheme: light dark;
 }
@@ -12065,6 +12066,10 @@ textarea.form-control-lg {
 
 .highlight .gi {
   color: #a6e22e;
+}
+
+* {
+  font-family: "DM Sans", serif;
 }
 
 img {
