@@ -12072,6 +12072,16 @@ textarea.form-control-lg {
   font-family: "DM Sans", serif;
 }
 
+.post {
+  max-width: 65ch;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 img {
   margin-bottom: 1rem;
 }

@@ -80,11 +80,12 @@
   </div>
 </nav>
 
-      <div class="body"><div class="post">
-  <h1>Making the Call: A Pragmatic Comparison of User Impersonation and RBAC
+      <div class="body"><div class="post-content">
+  <div class="post">
+    <h1>Making the Call: A Pragmatic Comparison of User Impersonation and RBAC
 </h1>
-  <span class="fs-4 text-muted">Apr 11, 2025</span>
-  <div class="mt-4"><p>The ability for a service to operate beyond its authorized controls, effectively performing actions as the user, forms the core of programmatic user impersonation. User impersonation, or just impersonation, is a powerful tool that can be a convenient solution and a complex troublemaker. Let’s try and visualize this:</p>
+    <span class="fs-4 text-muted">Apr 11, 2025</span>
+    <div class="mt-4"><p>The ability for a service to operate beyond its authorized controls, effectively performing actions as the user, forms the core of programmatic user impersonation. User impersonation, or just impersonation, is a powerful tool that can be a convenient solution and a complex troublemaker. Let’s try and visualize this:</p>
 
 <p>Maisie and Max are working on a project that requires them to send a PDF back-and-forth to each other. Maisie completes her part and sends it to Max. Max completes his and sends it back. Uh oh! Max made a mistake and needs to get the document back. How can this be done without giving too much control to Maisie or Max? Impersonation. The file service can impersonate Maisie, send the file back to Max, and log it as returned. Impersonation can also be Max requesting a batch of files to be sent and the service performing the individual actions on Max’s behalf.</p>
 
@@ -98,7 +99,9 @@
 
 <p>Navigating the choice between user impersonation and RBAC often comes down to which set of problems you’d rather solve. Impersonation’s downstream audit ambiguity and token lifecycle management can be complex, while RBAC’s potential for overly broad permissions presents serious security hurdles, often necessitating the kind of granular role definition discussed from my own experience. Both paths require careful implementation. Before committing, thoroughly analyze the impact on your audit logs, your dependencies, and your overall security architecture to determine which approach — or perhaps a carefully architected hybrid — best aligns with your project’s specific constraints and priorities.</p>
 </div>
+  </div>
 </div>
+
 </div>
     </div>
     <footer class="footer mt-auto py-3">
