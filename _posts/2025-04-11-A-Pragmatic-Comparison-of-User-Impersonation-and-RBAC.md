@@ -1,7 +1,6 @@
 ---
 layout: post
-title: >
-  Making the Call: A Pragmatic Comparison of User Impersonation and RBAC
+title: A Pragmatic Comparison of User Impersonation and RBAC
 ---
 
 The ability for a service to operate beyond its authorized controls, effectively performing actions as the user, forms the core of programmatic user impersonation. User impersonation, or just impersonation, is a powerful tool that can be a convenient solution and a complex troublemaker. Let’s try and visualize this:
