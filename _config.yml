@@ -2,8 +2,8 @@ name: Maximilano Rios
 title: Maximiliano Rios
 lightavatar: /assets/images/tired.png
 darkavatar: /assets/images/tired.png
-tagline: Git commits and random bits
-description: Git commits and random bits
+tagline:
+description:
 url:
 baseurl: ""
 author: maxrios
@@ -17,6 +17,7 @@ footer-links:
   github: maxrios
   linkedin: maximiliano-merced
   rss: maxrios
+  bsky: maxrios.dev
 
 plugins:
   - jekyll-seo-tag
