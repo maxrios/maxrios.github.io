@@ -24,6 +24,9 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 
+include:
+  - .well-known
+
 defaults:
   - scope:
       path: ""
