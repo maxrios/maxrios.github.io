@@ -1,24 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container-fluid">
-    <a class="navbar-brand p-0" href="{{ '/' | relative_url }}">
-    {% if site.lightavatar or site.darkavatar %}
-    <img src="{{ site.lightavatar | relative_url }}" alt="light avatar" width="30" class="d-inline-block align-top m-0 light-avatar">
-    <img src="{{ site.darkavatar | relative_url }}" alt="dark avatar" width="30" class="d-inline-block align-top m-0 dark-avatar">
-    {% endif %}
-      {{ site.name }}</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<div class="topbar">
+  <a class="brand" href="{{ '/' | relative_url }}">
+    <span class="blink"></span>maxrios.dev
+  </a>
+  <div class="topnav">
+    {% for item in site.data.navigation %}
+      {% if item.name != "Moody Privacy" %}
+        <a href="{{ item.link | relative_url }}"{% if page.url == item.link %} class="on"{% endif %}>{{ item.name | downcase }}</a>
+      {% endif %}
+    {% endfor %}
+    <button type="button" class="theme-toggle" aria-label="Toggle theme">
+      <svg class="i-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+      </svg>
+      <svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        {% for item in site.data.navigation %}
-          {% if item.name != "Moody Privacy" %}
-            <li class="nav-item">
-              <a href="{{ item.link | relative_url }}" {% if page.url == item.link %} class="nav-link active" {% else %} class="nav-link" {% endif %}>{{ item.name }}</a>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
   </div>
-</nav>
+</div>

@@ -1,11 +1,18 @@
 ---
 layout: default
 ---
-<div class="post-content">
-  <div class="post">
-    <h1>{{ page.title }}</h1>
-    <span class="fs-4 text-muted">{{ page.date | date: "%b %d, %Y" }}</span>
-    <div class="mt-4">{{ content }}</div>
+<div class="crumb">
+  <a href="{{ '/' | relative_url }}">~</a><span class="sl"> / </span><a href="{{ '/' | relative_url }}">writing</a><span class="sl"> / </span><span class="leaf">{{ page.title | replace: "'", "" | replace: "’", "" | slugify }}</span>
+</div>
+
+<div class="phead">
+  <h1>{{ page.title }}</h1>
+  <div class="pmeta">
+    <span><span class="k">date:</span> {{ page.date | date: "%B %d, %Y" }}</span>
+    {% assign words = content | number_of_words %}
+    {% assign minutes = words | divided_by: 200 | plus: 1 %}
+    <span><span class="k">read:</span> {{ minutes }} min read</span>
   </div>
 </div>
 
+<article class="reading">{{ content }}</article>

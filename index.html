@@ -2,35 +2,36 @@
 layout: default
 ---
 
-<div class="archive">
-  {% for post in site.posts %} 
-    {% if post.pinned %}
-      <div class="archive-item">
-        📌&nbsp;&nbsp;
-        <span class="post-date archive-date fs-4"
-          >{{ post.date | date: "%B %d, %Y" }}</span
-        >
-        <a href="{{ post.url | relative_url }}" 
-            class="archive-title fs-4">
-              {{ post.title }}
-        </a>
-      </div>
-    {% endif %}
-  {% endfor %}
-</div>
+{% assign total = site.posts | size %}
+<div class="prompt"><span class="ac">~</span> <b>ls</b> ./writing <span class="ac">—</span> {{ total }} entries</div>
 
-<div class="archive">
-  {% for post in site.posts %} {% assign currDate = post.date | date: "%Y" %} {%
-  if currDate != date %}
-  <h1 class="archive-year">{{ currDate }}</h1>
-  {% assign date = currDate %} {% endif %}
-  <div class="archive-item">
-    <span class="post-date archive-date fs-4"
-      >{{ post.date | date: "%B %d, %Y" }}</span
-    >
-    <a href="{{ post.url | relative_url }}" class="archive-title fs-4"
-      >{{ post.title }}</a
-    >
-  </div>
-  {% endfor %}
-</div>
+{% for post in site.posts %}
+  {% if post.pinned %}
+    <a href="{{ post.url | relative_url }}" class="pinrow">
+      <span class="star">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 9V4l1 0c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1l1 0v5c0 1.66-1.34 3-3 3v2h5.97v7l1 1 1-1v-7H19v-2c-1.66 0-3-1.34-3-3z"/></svg>
+      </span>
+      <span class="ti">{{ post.title }}</span>
+      <span class="dt">{{ post.date | date: "%b %d, %Y" }}</span>
+    </a>
+  {% endif %}
+{% endfor %}
+
+{% for post in site.posts %}
+  {% assign currYear = post.date | date: "%Y" %}
+  {% if currYear != year %}
+    {% unless forloop.first %}</div>{% endunless %}
+    <div class="ycomment">// {{ currYear }}</div>
+    <div class="listing">
+    {% assign year = currYear %}
+  {% endif %}
+  {% assign n = total | minus: forloop.index | plus: 1 %}
+  {% assign nn = n %}
+  {% if n < 10 %}{% assign nn = n | prepend: "0" %}{% endif %}
+  <a href="{{ post.url | relative_url }}" class="item">
+    <span class="ix">{{ nn }}</span>
+    <span class="ti">{{ post.title }}</span>
+    <span class="dt">{{ post.date | date: "%B %d, %Y" }}</span>
+  </a>
+  {% if forloop.last %}</div>{% endif %}
+{% endfor %}

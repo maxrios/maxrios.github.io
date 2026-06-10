@@ -1,0 +1,452 @@
+// Direction B — "Terminal": monospace UI chrome + serif reading column,
+// one amber signal color. Index reads like a tidy directory listing.
+// Ported from the Claude Design handoff (dirB.jsx).
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+html {
+  --bg: #FCFBF7;
+  --panel: #FFFFFF;
+  --fg: #1C1B17;
+  --muted: #7C786C;
+  --faint: #A8A498;
+  --line: rgba(28, 27, 23, .12);
+  --accent: oklch(.62 .13 64);
+  --accent-soft: oklch(.62 .13 64 / .12);
+}
+
+html[data-theme="dark"] {
+  --bg: #13130F;
+  --panel: #1A1914;
+  --fg: #E9E6DC;
+  --muted: #8B8678;
+  --faint: #5E5A4F;
+  --line: rgba(233, 230, 220, .13);
+  --accent: oklch(.78 .13 72);
+  --accent-soft: oklch(.78 .13 72 / .14);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 0 34px;
+}
+
+.serif {
+  font-family: 'Newsreader', Georgia, serif;
+}
+
+/* top bar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 34px 0 18px;
+}
+
+.brand,
+.brand:visited {
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+
+.brand .blink {
+  width: 8px;
+  height: 15px;
+  background: var(--accent);
+  display: inline-block;
+  animation: termblink 1.2s steps(2) infinite;
+}
+
+@keyframes termblink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topnav a {
+  font-size: 12.5px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 4px 9px;
+  border-radius: 5px;
+  transition: color .15s, background .15s;
+}
+
+.topnav a:hover {
+  color: var(--fg);
+  background: var(--accent-soft);
+}
+
+.topnav a.on {
+  color: var(--accent);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 3px;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: color .15s, background .15s;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.rule {
+  height: 1px;
+  background: var(--line);
+}
+
+/* home index */
+.prompt {
+  font-size: 12px;
+  color: var(--faint);
+  margin: 26px 0 14px;
+}
+
+.prompt b {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.prompt .ac {
+  color: var(--accent);
+}
+
+.pinrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  transition: border-color .15s;
+}
+
+.pinrow:hover {
+  border-color: var(--accent);
+}
+
+.pinrow .star {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+}
+
+.pinrow .ti {
+  flex: 1;
+  font-size: 14px;
+}
+
+.pinrow .dt {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.ycomment {
+  font-size: 11.5px;
+  color: var(--faint);
+  margin: 30px 0 6px;
+}
+
+.listing {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  align-items: baseline;
+  gap: 14px;
+  padding: 11px 12px;
+  margin: 0 -12px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: inherit;
+  transition: background .14s;
+}
+
+.item:hover {
+  background: var(--accent-soft);
+}
+
+.item .ix {
+  font-size: 11px;
+  color: var(--faint);
+  text-align: right;
+}
+
+.item:hover .ix {
+  color: var(--accent);
+}
+
+.item .ti {
+  font-size: 14.5px;
+  font-weight: 500;
+  min-width: 0;
+}
+
+.item .dt {
+  font-size: 11.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* footer */
+footer.site-footer {
+  margin-top: 42px;
+  padding: 20px 0 36px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+footer.site-footer .copy {
+  font-size: 11px;
+  color: var(--faint);
+}
+
+.social {
+  display: flex;
+  gap: 14px;
+}
+
+.social a {
+  color: var(--muted);
+  display: flex;
+  transition: color .15s, transform .15s;
+}
+
+.social a:hover {
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* post + page */
+.crumb {
+  font-size: 11.5px;
+  color: var(--faint);
+  margin-top: 22px;
+}
+
+.crumb a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.crumb a:hover {
+  color: var(--accent);
+}
+
+.crumb .sl {
+  color: var(--faint);
+}
+
+.crumb .leaf {
+  color: var(--accent);
+}
+
+.phead {
+  margin-top: 18px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.phead h1,
+.page-title {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  margin: 0 0 14px;
+}
+
+.pmeta {
+  display: flex;
+  gap: 16px;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.pmeta .k {
+  color: var(--faint);
+}
+
+/* reading column — markdown-rendered content */
+.reading {
+  font-family: 'Newsreader', Georgia, serif;
+  margin-top: 28px;
+}
+
+.reading p {
+  margin: 0 0 18px;
+  font-size: 18px;
+  line-height: 1.62;
+  color: var(--fg);
+}
+
+.reading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.reading a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.reading h2,
+.reading h3 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+  margin: 32px 0 12px;
+}
+
+.reading h2 { font-size: 26px; }
+.reading h3 { font-size: 21px; }
+
+.reading ul,
+.reading ol {
+  font-size: 18px;
+  line-height: 1.62;
+  padding-left: 1.4em;
+  margin: 0 0 18px;
+}
+
+.reading li {
+  margin-bottom: 6px;
+}
+
+.reading img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  margin-bottom: 1rem;
+}
+
+.reading hr {
+  border: 0;
+  height: 1px;
+  background: var(--line);
+  margin: 30px 0;
+}
+
+.reading blockquote {
+  margin: 0 0 18px;
+  padding: 4px 0 4px 18px;
+  border-left: 2px solid var(--accent);
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* the BPL post renders a row of three images as a markdown table */
+.reading table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 12px 0;
+  margin: 6px -12px 24px;
+  table-layout: fixed;
+}
+
+.reading table img {
+  margin-bottom: 0;
+}
+
+.reading thead {
+  display: none;
+}
+
+/* code — monospace over the panel surface (syntax-highlighting layered on top) */
+.reading code {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .9em;
+  background: var(--accent-soft);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.reading pre {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px 18px;
+  overflow-x: auto;
+  margin: 0 0 22px;
+}
+
+.reading pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* resume embed */
+.reading object,
+.reading embed {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+@media (max-width: 560px) {
+  .reading .phead h1,
+  .page-title { font-size: 28px; }
+
+  .reading table {
+    border-spacing: 8px 0;
+  }
+}
